@@ -10,7 +10,7 @@ int main() {
     if(!A && !S)
       return 0;
 
-    Lineup s(S);
+    Lineup shows(S);
 
     for(int i = 0; i < A; i++){
       std::vector<double> rating(S);
@@ -18,11 +18,11 @@ int main() {
       for(int j = 0; j < S; j++)
         std::cin >> rating[j];
       
-      s.AddRating(rating);
+      shows.AddRating(rating);
     }
 
-    ShowList ans = s.ChooseShows();
+    ShowList ans = shows.ChooseShows();
 
-    std::cout << ++ans.left << ' ' << ++ans.right << std::endl;
+    std::cout << ans.left + 1 << ' ' << ans.right + 1 << std::endl;
   }
 }

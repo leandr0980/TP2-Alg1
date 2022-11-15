@@ -20,7 +20,7 @@ class Lineup
         int NumShows;
 
         ShowList MaxRatings(int l, int r);
-        ShowList MaxCrossingRates(int l, int r, int m);
+        ShowList MaxCrossingRates(int l, int r);
 };
 
 #endif

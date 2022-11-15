@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 
+// A very big integer value used as a limit
 const int INF = 0x3f3f3f3f;
 
 Lineup::Lineup(int n)
@@ -17,12 +18,15 @@ void Lineup::AddRating(std::vector<double> rating)
 }
 
 ShowList Lineup::ChooseShows()
+// Finds out which shows the group must watch
 {
     return MaxRatings(0, NumShows-1);
 }
 
-ShowList Lineup::MaxCrossingRates(int l, int r, int m)
+ShowList Lineup::MaxCrossingRates(int l, int r)
+// Finds the list with the largest sum that contains the middle element
 {
+    int m = (l + r)/2;
     double LeftSum = -INF, RightSum = -INF;
     int LeftIndex = m, RightIndex = m;
 
@@ -61,6 +65,7 @@ ShowList Lineup::MaxCrossingRates(int l, int r, int m)
 }
 
 ShowList Lineup::MaxRatings(int l, int r)
+// Finds the list with the largest rating sum within the range [l, r]
 {
     if(l > r)
         return {l, r, -INF};
@@ -72,7 +77,7 @@ ShowList Lineup::MaxRatings(int l, int r)
 
     ShowList LeftRatings = MaxRatings(l, m-1);
     ShowList RightRatings = MaxRatings(m+1, r);
-    ShowList CrossingRatings = MaxCrossingRates(l, r, m);
+    ShowList CrossingRatings = MaxCrossingRates(l, r);
 
     double MaxSum = std::max({LeftRatings.sum, RightRatings.sum, CrossingRatings.sum});
 
