@@ -1,19 +1,28 @@
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
 #include "rock.hpp"
+#include <iostream>
 
 int main() {
-  
-  //make a vector of ints
-  std::vector<int> v;
 
-  //make a map of strings to ints
-  std::map<std::string, int> m;
+  while(1){
+    int A, S;
+    std::cin >> A >> S;
 
-  // call a function in another file
-  test();
+    if(!A && !S)
+      return 0;
 
-  return(0);
+    Lineup s(S);
+
+    for(int i = 0; i < A; i++){
+      std::vector<double> rating(S);
+
+      for(int j = 0; j < S; j++)
+        std::cin >> rating[j];
+      
+      s.AddRating(rating);
+    }
+
+    ShowList ans = s.ChooseShows();
+
+    std::cout << ++ans.left << ' ' << ++ans.right << std::endl;
+  }
 }
